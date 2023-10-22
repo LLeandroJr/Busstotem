@@ -7,9 +7,9 @@
 
 class ForwardList{
 private:
-    Node* m_head{};
-    Node* m_tail{};
-    unsigned m_size{};
+    Node* m_head{}; // Nó sentinela tipo Node que aponta para o primeiro nó da ForwardList
+    Node* m_tail{}; // Ponteiro tipo Node que aponta para o último nó da ForwardList
+    unsigned m_size{}; // Tamanho da ForwardList
 public:
     iterator begin(){
         iterator it(m_head->next);
@@ -30,12 +30,12 @@ public:
         iterator it(m_tail);
         return it;
     }
-    // Construtor: cria lista vazia
+    // Construtor que cria a ForwardList vazia.
     ForwardList(){
         m_head=m_tail=new Node(Data(),nullptr,nullptr);
         m_size=0;
     }
-    // destrutor
+    // Destrutor da classe ForwardList
     ~ForwardList(){
         clear();
         delete m_head;
@@ -44,9 +44,9 @@ public:
     void print() const{
         Node* temp=m_head->next;
         while(temp!=nullptr){
-            std::cout<<temp->data.showID()<<"\n";
-            std::cout<<temp->data.showCompany()<<"\n";
-            std::cout<<temp->data.showTo()<<"\n";
+            std::cout<<"ID: "<<temp->data.showID()<<"\n";
+            std::cout<<"Company: "<<temp->data.showCompany()<<"\n";
+            std::cout<<"TO: "<<temp->data.showTo()<<"\n";
             temp=temp->next;
         }
     }
@@ -83,13 +83,6 @@ public:
 
     void erase(){
 
-    }
-
-    // by:diogo
-    void append(std::string name, int id) {
-        Node* new_node = new Node(name, id);
-        new_node->next = m_head;
-        m_head = new_node;
     }
 };
 

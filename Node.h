@@ -3,20 +3,22 @@
 #include "Data.h"
 #include "NodeList.h"
 #include "List.h"
-#include <iostream> // implementacao by Diogo
 
+// Classe contém os atributos do tipo Data, List* e Node*.
+// Respectivamente:
+// data: contém os atributos do objeto da classe Data.
+// list: ponteiro para lista duplamente encadeada circular.
+// next: ponteiro para o próximo nó.
 class Node{
     friend class ForwardList;
     friend class iterator;
 private:
-    // o nó deve ter três informações principais
-    // informação que o nó guarda
-    // o ponteiro que aponta para a lista circula que por vez contém a pass 
-    // 0 ponteiro para o póximo nó
-    Data data;
-    List* list;
-    Node* next;
+    Data data; // Contém os atributos do objeto da classe Data.
+    List* list; // Ponteiro para lista duplamente encadeada circular.
+    Node* next; // Ponteiro para o próximo nó.
 public:
+    // Construtor que atribui ao objeto da classe Node.
+    // Node(Data <data>,List* <listPtr>,Node* <nextPtr>)
     Node(Data data,List* listPtr,Node* nextPtr){
         this->data=data;
         list=listPtr;
