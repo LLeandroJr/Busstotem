@@ -68,7 +68,7 @@ public:
         while(temp!=nullptr){
 
             //m_head->next->list->clear(); // chamando a função clear da List.h
-            m_head->next->list->clear(); // chamando a função clear da List.h
+            m_head->next->list->~List(); // chamando a função clear da List.h
 
             m_head->next=temp->next;
             delete temp;
