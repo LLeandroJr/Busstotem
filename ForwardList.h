@@ -1,6 +1,7 @@
 #ifndef FORWARDLIST_H
 #define FORWARDLIST_H
 #include "Node.h"
+#include "Data.h"
 #include "List.h"
 #include <iostream>
 
@@ -41,7 +42,13 @@ public:
     }
 
     void print() const{
-
+        Node* temp=m_head->next;
+        while(temp!=nullptr){
+            std::cout<<temp->data.showID()<<"\n";
+            std::cout<<temp->data.showCompany()<<"\n";
+            std::cout<<temp->data.showTo()<<"\n";
+            temp=temp->next;
+        }
     }
 
     const bool empty() const{
@@ -83,15 +90,6 @@ public:
         Node* new_node = new Node(name, id);
         new_node->next = m_head;
         m_head = new_node;
-    }
-
-    // by:diogo
-    void display() {
-        Node* current = m_head;
-        while (current != nullptr) {
-            std::cout << "Name: " << current->name << ", ID: " << current->id << std::endl;
-            current = current->next;
-        }
     }
 };
 
