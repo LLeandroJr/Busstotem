@@ -22,11 +22,6 @@ public:
         list=listPtr;
         next=nextPtr;
     }
-    std::string name; // By Diogo
-    int id; // By Diogo
-    Node* next; // By Diogo
-
-    Node(std::string n, int i) : name(n), id(i), next(nullptr) {} // By Diogo
 };
 
 #endif

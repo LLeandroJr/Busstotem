@@ -10,12 +10,6 @@ private:
     Node* m_tail{};
     unsigned m_size{};
 public:
-    ForwardList();
-    ~ForwardList();
-
-    void append(std::string name, int id);
-    void display();
-
     iterator begin(){
         iterator it(m_head->next);
         return it;
@@ -36,7 +30,6 @@ public:
         iterator it(m_tail);
         return it;
     }
-
     // Construtor: cria lista vazia
     ForwardList(){
         m_head=m_tail=new Node(Data(),nullptr,nullptr);
@@ -85,7 +78,6 @@ public:
     void erase(){
 
     }
-
 };
 
 class iterator{
