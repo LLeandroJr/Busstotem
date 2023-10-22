@@ -27,60 +27,70 @@ public:
 
     // Função sem parâmetros
     // Retorna o atributo ID da class Data
+    // Complexidade: O(1)
     const unsigned& showID() const{
         return ID;
     }
 
     // Função sem parâmetros
     // Retorna o atributo company da class Data
+    // Complexidade: O(1)
     const std::string& showCompany() const{
         return company;
     }
 
     // Função sem parâmetros
     // Retorna o atributo to da class Data
+    // Complexidade: O(1)
     const std::string& showTo() const{
         return to;
     }
 
     // Função sem parâmetros
     // Função que torna vazio o atributo ID da class Data
+    // Complexidade: O(1)
     void ID(){
         this->ID={};
     }
     
     // Função sem parâmetros
     // Função que atribui newID a class Data
+    // Complexidade: O(1)
     void ID(const unsigned& newID){
         ID=newID;
     }
     
     // Função sem parâmetros
     // Função que torna vazio o atributo company da class Data
+    // Complexidade: O(1)
     void company(){
         this->company={};
     }
 
     // Função sem parâmetros
     // Função que atribui newCompany a class Data
+    // Complexidade: O(1)
     void company(const std::string& newCompany){
         company=newCompany;
     }
 
     // Função sem parâmetros
     // Função que torna vazio o atributo company da class Data
+    // Complexidade: O(1)
     void to(){
         this->company={};
     }
 
     // Função sem parâmetros
     // Função que atribui newTo a class Data
+    // Complexidade: O(1)
     void to(const std::string& newTo){
         to=newTo;
     }
 
     // Função sem parâmetros
     // Função que torna vazio todos os atributos da class Data
+    // Complexidade: O(1)
     void eraseData(){
         this->ID={};
         this->company={};
