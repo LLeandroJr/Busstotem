@@ -13,7 +13,6 @@ public:
     iterator begin(){
         iterator it(m_head->next);
         return it;
-
     }
 
     iterator before_begin(){
@@ -77,6 +76,22 @@ public:
 
     void erase(){
 
+    }
+
+    // by:diogo
+    void append(std::string name, int id) {
+        Node* new_node = new Node(name, id);
+        new_node->next = m_head;
+        m_head = new_node;
+    }
+
+    // by:diogo
+    void display() {
+        Node* current = m_head;
+        while (current != nullptr) {
+            std::cout << "Name: " << current->name << ", ID: " << current->id << std::endl;
+            current = current->next;
+        }
     }
 };
 
