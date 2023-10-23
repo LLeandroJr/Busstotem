@@ -61,7 +61,7 @@ int main() {
                 } while (continueAdding == 'S' || continueAdding == 's');
 
                 cout << "Elementos da lista encadeada:" << endl;
-                myForwardList.display();
+                myForwardList.print();
 
                 return 0;
             }
