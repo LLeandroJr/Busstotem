@@ -9,7 +9,7 @@
 // to: destino.
 class Data{
     friend class Node;
-    friend class iterator;
+    friend class iterator_forwardList;
 private:
     unsigned ID; // Número de identificação da linha.
     std::string company; // Companhia.

@@ -1,7 +1,6 @@
 #ifndef NODE_H
 #define NODE_H
 #include "Data.h"
-#include "NodeList.h"
 #include "List.h"
 
 // Classe contém os atributos do tipo Data, List* e Node*.
@@ -11,7 +10,7 @@
 // next: ponteiro para o próximo nó.
 class Node{
     friend class ForwardList;
-    friend class iterator;
+    friend class iterator_forwardList;
 private:
     Data data; // Contém os atributos do objeto da classe Data.
     List* list; // Ponteiro para lista duplamente encadeada circular.

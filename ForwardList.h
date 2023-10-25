@@ -13,28 +13,28 @@ private:
 public:
     // Retorna o primeiro nó da ForwardList
     // Complexidade: O(1)
-    iterator begin(){
-        iterator it(m_head->next);
+    iterator_forwardList begin(){
+        iterator_forwardList it(m_head->next);
         return it;
     }
 
     // Retorna o nó sentinela da ForwardList
     // Complexidade: O(1)
-    iterator before_begin(){
-        iterator it(m_head);
+    iterator_forwardList before_begin(){
+        iterator_forwardList it(m_head);
         return it;
     }
     // Retorna o fim da ForwardList
     // Complexidade: O(1)
-    iterator end(){
-        iterator it(nullptr);
+    iterator_forwardList end(){
+        iterator_forwardList it(nullptr);
         return it;
     }
 
     // Retorna o último nó da ForwardList
     // Complexidade: O(1)
-    iterator before_end(){
-        iterator it(m_tail);
+    iterator_forwardList before_end(){
+        iterator_forwardList it(m_tail);
         return it;
     }
 
@@ -99,12 +99,12 @@ public:
     }
 };
 
-class iterator{
+class iterator_forwardList{
     friend class ForwardList;
 private:
     Node* ptr;
 public:
-    iterator(Node *point){
+    iterator_forwardList(Node *point){
         ptr=point;
     }
 
@@ -124,21 +124,21 @@ public:
         return ptr->data.to;
     }
 
-    bool operator==(const iterator& it){
+    bool operator==(const iterator_forwardList& it){
         return ptr==it.ptr;
     }
 
-    bool operator!=(const iterator& it){
+    bool operator!=(const iterator_forwardList& it){
         return ptr!=it.ptr;
     }
 
-    iterator& operator++(){
+    iterator_forwardList& operator++(){
         ptr=ptr->next;
         return *this;
     }
 
-    iterator operator++(int){
-        iterator temp=*this;
+    iterator_forwardList operator++(int){
+        iterator_forwardList temp=*this;
         ptr=ptr->next;
         return temp;
     }
