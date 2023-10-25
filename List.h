@@ -4,6 +4,50 @@
 #include "Pass.h"
 #include <iostream>
 
+class iterator_list{
+    friend class List;
+private:
+    NodeList* listPtr;
+public:
+    iterator_list(NodeList *point){
+        listPtr=point;
+    }
+
+    Pass& operator*() {
+        return listPtr->listData;
+    }
+
+    bool operator==(const iterator_list& it){
+        return listPtr==it.listPtr;
+    }
+
+    bool operator!=(const iterator_list& it){
+        return listPtr!=it.listPtr;
+    }
+
+    iterator_list& operator++(){
+        listPtr=listPtr->listNext;
+        return *this;
+    }
+
+    iterator_list operator++(int){
+        iterator_list temp=*this;
+        listPtr=listPtr->listNext;
+        return temp;
+    }
+
+    iterator_list& operator--(){
+        listPtr=listPtr->listPrev;
+        return *this;
+    }
+
+    iterator_list operator--(int){
+        iterator_list temp=*this;
+        listPtr=listPtr->listPrev;
+        return temp;
+    }
+};
+
 class List{
 private:
     NodeList* list_m_head{};
@@ -167,70 +211,6 @@ public:
 
     void erase(){
 
-    }
-};
-
-class iterator_list{
-    friend class List;
-private:
-    NodeList* listPtr;
-public:
-    iterator_list(NodeList *point){
-        listPtr=point;
-    }
-
-    Pass& operator*() {
-        return listPtr->listData;
-    }
-    
-    std::string& operator*(std::string) {
-        return listPtr->listData.from;
-    }
-
-    int& operator*(int) {
-        return listPtr->listData.startTimeHour;
-    }
-
-    int& operator*(int) {
-        return listPtr->listData.startTimeMin;
-    }
-
-    int& operator*(int) {
-        return listPtr->listData.endTimeMin;
-    }
-
-    int& operator*(int) {
-        return listPtr->listData.endTimeMin;
-    }
-
-    bool operator==(const iterator_list& it){
-        return listPtr==it.listPtr;
-    }
-
-    bool operator!=(const iterator_list& it){
-        return listPtr!=it.listPtr;
-    }
-
-    iterator_list& operator++(){
-        listPtr=listPtr->listNext;
-        return *this;
-    }
-
-    iterator_list operator++(int){
-        iterator_list temp=*this;
-        listPtr=listPtr->listNext;
-        return temp;
-    }
-
-    iterator_list& operator--(){
-        listPtr=listPtr->listPrev;
-        return *this;
-    }
-
-    iterator_list operator--(int){
-        iterator_list temp=*this;
-        listPtr=listPtr->listPrev;
-        return temp;
     }
 };
 
