@@ -129,11 +129,11 @@ public:
     }
     //-----------------------------------------------------------
 
-    const bool empty() const{
+    bool empty() const{
         return list_m_size==0;
     }
 
-    const unsigned size()const{
+    unsigned size()const{
         return list_m_size;
     }
     // função que limpa a List.h
@@ -156,6 +156,8 @@ public:
         */
         list_m_size=0;
     }
+
+    /*
 
     void insert(const std::string& from,const int& startTimeHour,const int& startTimeMin,const int& endTimeHour,const int& endTimeMin){
         for(auto it=begin();it!=end();++it){
@@ -207,7 +209,7 @@ public:
     }
     //-----------------------------------------------------------
 
-
+    */
 
     void erase(){
 
