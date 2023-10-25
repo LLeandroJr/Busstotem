@@ -5,6 +5,39 @@
 #include "List.h"
 #include <iostream>
 
+class iterator_forwardList{
+    friend class ForwardList;
+private:
+    Node* ptr;
+public:
+    iterator_forwardList(Node *point){
+        ptr=point;
+    }
+    
+    Data& operator*() {
+        return ptr->data;
+    }
+
+    bool operator==(const iterator_forwardList& it){
+        return ptr==it.ptr;
+    }
+
+    bool operator!=(const iterator_forwardList& it){
+        return ptr!=it.ptr;
+    }
+
+    iterator_forwardList& operator++(){
+        ptr=ptr->next;
+        return *this;
+    }
+
+    iterator_forwardList operator++(int){
+        iterator_forwardList temp=*this;
+        ptr=ptr->next;
+        return temp;
+    }
+};
+
 class ForwardList{
 private:
     Node* m_head{}; // Nó sentinela tipo Node que aponta para o primeiro nó da ForwardList
@@ -49,7 +82,7 @@ public:
         delete m_head;
         delete m_tail;
     }
-
+    
     // Imprime os atributos do objeto da classe Data,
     // associados ao Node da ForwardList.
     // Complexidade: O(n)
@@ -65,13 +98,13 @@ public:
 
     // Retorna um booleano, caso a ForwardList esteja vazia, verdade e senão falso. 
     // Complexidade: O(1)
-    const bool empty() const{
+    bool empty() const{
         return m_size==0;
     }
 
     // Retorna o tamanho da ForwardList
     // Complexidade: O(1)
-    const unsigned size()const{
+    unsigned size()const{
         return m_size;
     }
 
@@ -80,8 +113,8 @@ public:
     void clear(){
         Node* temp=m_head->next;
         while(temp!=nullptr){
-            // Chama o destrutor da List 
-            m_head->next->list->~List();
+            // Chama o destrutor da List
+            //m_head->next->list->~List();
             m_head->next=temp->next;
             delete temp;
             temp=m_head->next;
@@ -96,51 +129,6 @@ public:
 
     void erase(){
 
-    }
-};
-
-class iterator_forwardList{
-    friend class ForwardList;
-private:
-    Node* ptr;
-public:
-    iterator_forwardList(Node *point){
-        ptr=point;
-    }
-
-    Data& operator*() {
-        return ptr->data;
-    }
-    
-    unsigned& operator*(unsigned) {
-        return ptr->data.ID;
-    }
-
-    std::string& operator*(std::string) {
-        return ptr->data.company;
-    }
-
-    std::string& operator*(std::string) {
-        return ptr->data.to;
-    }
-
-    bool operator==(const iterator_forwardList& it){
-        return ptr==it.ptr;
-    }
-
-    bool operator!=(const iterator_forwardList& it){
-        return ptr!=it.ptr;
-    }
-
-    iterator_forwardList& operator++(){
-        ptr=ptr->next;
-        return *this;
-    }
-
-    iterator_forwardList operator++(int){
-        iterator_forwardList temp=*this;
-        ptr=ptr->next;
-        return temp;
     }
 };
 

@@ -1,6 +1,7 @@
 #ifndef NODE_H
 #define NODE_H
 #include "Data.h"
+#include "NodeList.h"
 #include "List.h"
 
 // Classe contém os atributos do tipo Data, List* e Node*.
