@@ -9,28 +9,39 @@ class Pass{
     friend class iterator_list;
 private:
     std::string from;
-    std::string startTime;
-    std::string endTime;
+    int startTimeHour,startTimeMin;
+    int endTimeHour,endTimeMin;
 public:
-    // construtpr vazio
+    // construtor vazio
     Pass(){}
     // construtor
-    Pass(const std::string& city,const std::string& start_time,const std::string& end_time){
+    // Pass(const std::string& <city>,const int& <start_time_hour>,const int& <start_time_min>,const int& <end_time_hour>,const int& <end_time_min>){
+    Pass(const std::string& city,const int& start_time_hour,const int& start_time_min,const int& end_time_hour,const int& end_time_min){
         this->from=city;
-        startTime=start_time;
-        endTime=end_time;
+        startTimeHour=start_time_hour;
+        startTimeMin=start_time_min;
+        endTimeHour=end_time_hour;
+        endTimeMin=end_time_min;
     }
 
     const std::string& showfrom() const{
         return from;
     }
 
-    const std::string& showStartTime() const{
-        return startTime;
+    const int& showStartTimeHour() const{
+        return startTimeHour;
     }
 
-    const std::string& showEndTime() const{
-        return endTime;
+    const int& showStartTimeMin() const{
+        return startTimeMin;
+    }
+
+    const int& showEndTimeHour() const{
+        return endTimeHour;
+    }
+
+    const int& showEndTimeMin() const{
+        return endTimeMin;
     }
 
     void from(){
@@ -41,26 +52,44 @@ public:
         from=newFrom;
     }
 
-    void startTime(){
-        this->startTime={};
+    void startTimeHour(){
+        this->startTimeHour={};
     }
 
-    void startTime(const std::string& newStartTime){
-        startTime=newStartTime;
+    void startTimeMin(){
+        this->startTimeMin={};
     }
 
-    void endTime(){
-        this->endTime={};
+    void startTimeHour(const int& newStartTimeHour){
+        startTimeHour=newStartTimeHour;
     }
 
-    void endTime(const std::string& newEndTime){
-        endTime=newEndTime;
+    void startTimeMin(const int& newStartTimeMin){
+        startTimeMin=newStartTimeMin;
+    }
+
+    void endTimeHour(){
+        this->endTimeHour={};
+    }
+
+    void endTimeHour(const int& newEndTimeHour){
+        endTimeHour=newEndTimeHour;
+    }
+
+    void endTimeMin(){
+        this->endTimeMin={};
+    }
+
+    void endTimeMin(const int& newEndTimeMin){
+        endTimeMin=newEndTimeMin;
     }
 
     void erasePass(){
         this->from={};
-        this->startTime={};
-        this->endTime={};
+        this->startTimeHour={};
+        this->startTimeMin={};
+        this->endTimeHour={};
+        this->endTimeMin={};
     }
 };
 

@@ -47,6 +47,7 @@ public:
     ~ForwardList(){
         clear();
         delete m_head;
+        delete m_tail;
     }
 
     // Imprime os atributos do objeto da classe Data,

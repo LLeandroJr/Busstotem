@@ -75,7 +75,7 @@ public:
     }
 
     void insert(){
-
+        NodeList* newNodeList=new NodeList(Pass("city",0,0,0,0),nullptr,nullptr);
     }
 
     void erase(){
@@ -100,12 +100,20 @@ public:
         return listPtr->listData.from;
     }
 
-    std::string& operator*(std::string) {
-        return listPtr->listData.startTime;
+    int& operator*(int) {
+        return listPtr->listData.startTimeHour;
     }
 
-    std::string& operator*(std::string) {
-        return listPtr->listData.endTime;
+    int& operator*(int) {
+        return listPtr->listData.startTimeMin;
+    }
+
+    int& operator*(int) {
+        return listPtr->listData.endTimeMin;
+    }
+
+    int& operator*(int) {
+        return listPtr->listData.endTimeMin;
     }
 
     bool operator==(const iterator_list& it){
