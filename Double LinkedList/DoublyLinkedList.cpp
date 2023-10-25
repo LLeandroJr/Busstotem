@@ -1,61 +1,61 @@
 #include "DoublyLinkedList.h"
 #include <iostream>
 
-DoublyLinkedList::DoublyLinkedList() {
-    head = nullptr;
+List::List() {
+    list_m_head = nullptr;
 }
 
-void DoublyLinkedList::append(std::string from, int arrival_hour, int arrival_minute, int departure_hour, int departure_minute) {
-    Node* newNode = new Node;
+void List::append(std::string from, int arrival_hour, int arrival_minute, int departure_hour, int departure_minute) {
+    NodeList* newNode = new NodeList;
     newNode->from = from;
     newNode->arrival_time_hour = arrival_hour;
     newNode->arrival_time_minute = arrival_minute;
     newNode->departure_time_hour = departure_hour;
     newNode->departure_time_minute = departure_minute;
-    newNode->next = nullptr;
-    newNode->prev = nullptr;
+    newNode->listNext = nullptr;
+    newNode->listPrev = nullptr;
 
-    if (head == nullptr) {
-        head = newNode;
-        head->next = head; // Faz o único nó apontar para si mesmo para formar uma lista circular
-        head->prev = head;
+    if (list_m_head == nullptr) {
+        list_m_head = newNode;
+        list_m_head->listNext = list_m_head; // Faz o único nó apontar para si mesmo para formar uma lista circular
+        list_m_head->listPrev = list_m_head;
     }
 
     else{
-        Node* tail = head->prev;
-        tail->next = newNode;
-        newNode->prev = tail;
-        newNode->next = head;
-        head->prev = newNode;
+        NodeList* tail = list_m_head->listPrev;
+        tail->listNext = newNode;
+        newNode->listPrev = tail;
+        newNode->listNext = list_m_head;
+        list_m_head->listPrev = newNode;
     }
 }
 
-void DoublyLinkedList::printForward() {
-    if (head == nullptr) {
+void List::printForward() {
+    if (list_m_head == nullptr) {
         std::cout << "A lista está vazia." << std::endl;
         return;
     }
 
-    Node* current = head;
+    NodeList* current = list_m_head;
     do {
         std::cout << "Destino: " << current->from
                   << ", Hora de Saida: " << current->arrival_time_hour << ":" << current->arrival_time_minute
                   << ", Hora de Chegada: " << current->departure_time_hour << ":" << current->departure_time_minute << std::endl;
-        current = current->next;
-    } while (current != head);
+        current = current->listNext;
+    } while (current != list_m_head);
 }
 
-void DoublyLinkedList::printBackward() {
-    if (head == nullptr) {
+void List::printBackward() {
+    if (list_m_head == nullptr) {
         std::cout << "A lista está vazia." << std::endl;
         return;
     }
 
-    Node* current = head->prev;
+    NodeList* current = list_m_head->listPrev;
     do {
         std::cout << "Destino: " << current->from
                   << ", Hora de Saida: " << current->arrival_time_hour << ":" << current->arrival_time_minute
                   << ", Hora de Chegada: " << current->departure_time_hour << ":" << current->departure_time_minute << std::endl;
-        current = current->prev;
-    } while (current != head->prev);
+        current = current->listPrev;
+    } while (current != list_m_head->listPrev);
 }

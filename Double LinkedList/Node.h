@@ -1,12 +1,11 @@
-#ifndef NODE_H
-#define NODE_H
+#ifndef NODELIST_H
 #include <iostream>
-class Node {
+class NodeList {
     public:
     std::string from;
          int arrival_time_hour, arrival_time_minute;
          int departure_time_hour, departure_time_minute;
-         Node* next;
-         Node* prev;
+         NodeList* listNext;
+         NodeList* listPrev;
 };
 #endif
