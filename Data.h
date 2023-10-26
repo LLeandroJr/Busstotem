@@ -16,9 +16,9 @@ private:
     std::string to; // Destino.
 public:
     // Construtor vazio.
-    Data(){}
+    Data():ID(),company("undefined"),to("undefined"){}
     // Construtor que atribui ao objeto da classe Data.
-    // Data(const unsined int& <ID>,const std::string& <company>,const std::string& <to>)
+    // Data(const unsigned int& <ID>,const std::string& <company>,const std::string& <to>)
     Data(const unsigned int& ID,const std::string& company, const std::string& to){
         this->ID=ID;
         this->company=company;
