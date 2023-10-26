@@ -122,9 +122,9 @@ public:
         m_tail=m_head;
         m_size=0;
     }
-    
+
     // função para testar apenas
-    void insert(const int& numero,const std::string& companhia,const std::string& destino){
+    void insert(const unsigned& numero,const std::string& companhia,const std::string& destino){
          m_head->next=new Node(Data(numero,companhia,destino),nullptr,nullptr);
     }
 
