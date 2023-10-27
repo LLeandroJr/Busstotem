@@ -2,27 +2,28 @@
 #define DATA_H
 #include <iostream>
 
-// Classe que contém os atributos do tipo unsigned int, string e string.
+// Classe que contém os atributos do tipo unsigned int, string, string e string.
 // Respectivamente:
 // ID: número de identificação da linha.
 // company: companhia.
+// from: origem.
 // to: destino.
 class Data{
     friend class Node;
     friend class iterator_forwardList;
 private:
-    unsigned ID; // Número de identificação da linha.
-    std::string company; // Companhia.
-    std::string to; // Destino.
+    unsigned ID{}; // Número de identificação da linha.
+    std::string company{"undefined"}; // Companhia.
+    std::string from{"undefined"}; // Origem
+    std::string to{"undefined"}; // Destino.
 public:
     // Construtor vazio.
-    Data():ID(),company("undefined"),to("undefined"){}
+    Data(){}
     // Construtor que atribui ao objeto da classe Data.
     // Data(const unsigned int& <ID>,const std::string& <company>,const std::string& <to>)
-    Data(const unsigned int& ID,const std::string& company, const std::string& to){
+    Data(const unsigned int& ID,const std::string& company){
         this->ID=ID;
         this->company=company;
-        this->to=to;
     }
 
     // Função sem parâmetros
@@ -37,6 +38,13 @@ public:
     // Complexidade: O(1)
     const std::string& showCompany() const{
         return company;
+    }
+
+    // Função sem parâmetros
+    // Retorna o atributo from da class Data
+    // Complexidade: O(1)
+    const std::string& showFrom() const{
+        return from;
     }
 
     // Função sem parâmetros
@@ -77,6 +85,20 @@ public:
     // Função sem parâmetros
     // Função que torna vazio o atributo company da class Data
     // Complexidade: O(1)
+    void resetFrom(){
+        this->from={};
+    }
+
+    // Função sem parâmetros
+    // Função que atribui newCompany a class Data
+    // Complexidade: O(1)
+    void newFrom(const std::string& new_from){
+        from=new_from;
+    }
+
+    // Função sem parâmetros
+    // Função que torna vazio o atributo company da class Data
+    // Complexidade: O(1)
     void resetTo(){
         this->to={};
     }
@@ -94,7 +116,6 @@ public:
     void eraseData(){
         this->ID={};
         this->company={};
-        this->to={};
     }
 };
 

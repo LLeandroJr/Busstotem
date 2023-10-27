@@ -86,14 +86,22 @@ public:
     // Imprime os atributos do objeto da classe Data,
     // associados ao Node da ForwardList.
     // Complexidade: O(n)
-    void print() const{
+    void printAll() const{
         Node* temp=m_head->next;
         while(temp!=nullptr){
             std::cout<<"ID: "<<temp->data.showID()<<"\n";
             std::cout<<"Company: "<<temp->data.showCompany()<<"\n";
+            std::cout<<"From: "<<temp->data.showFrom()<<"\n";
             std::cout<<"TO: "<<temp->data.showTo()<<"\n";
             temp=temp->next;
         }
+    }
+
+    void printIT(const iterator_forwardList& it) const{
+            std::cout<<"ID: "<<it.ptr->data.showID()<<"\n";
+            std::cout<<"Company: "<<it.ptr->data.showCompany()<<"\n";
+            std::cout<<"From: "<<it.ptr->data.showFrom()<<"\n";
+            std::cout<<"TO: "<<it.ptr->data.showTo()<<"\n";
     }
 
     // Retorna um booleano, caso a ForwardList esteja vazia, verdade e senão falso. 
@@ -114,7 +122,7 @@ public:
         Node* temp=m_head->next;
         while(temp!=nullptr){
             // Chama o destrutor da List
-            //m_head->next->list->~List();
+            m_head->next->list->~List();
             m_head->next=temp->next;
             delete temp;
             temp=m_head->next;
@@ -123,13 +131,42 @@ public:
         m_size=0;
     }
 
-    // função para testar apenas
-    void insert(const unsigned& numero,const std::string& companhia,const std::string& destino){
-         m_head->next=new Node(Data(numero,companhia,destino),nullptr,nullptr);
+    // Função que insere uma linha da ForwardList
+    // Ordem crescente e após o numero da linha especificado.
+    // Retorna o iterator_list recem-adicionado
+    // Complexidade: O(n)
+    iterator_forwardList insert(const unsigned& numero,const std::string& companhia){
+        Node* thisNode=m_head;
+
+        while(thisNode->next!=nullptr && thisNode->next->data.showID()<=numero){
+            thisNode=thisNode->next;
+        }
+        if(thisNode->next==nullptr){
+            Node* newNodeForwardList=new Node(Data(numero,companhia),nullptr,thisNode->next);
+            thisNode->next=newNodeForwardList;
+            m_tail=newNodeForwardList;
+            std::cout<< "elemento inserido no final\n";
+        }
+        else{
+            thisNode=thisNode->next;
+            Node* temp=thisNode->next;
+            thisNode->next=new Node(Data(numero,companhia),nullptr,temp);
+            std::cout<< "elemento inserido no meio\n";
+        }
+        ++m_size;
+
+        return iterator_forwardList(thisNode->next);
     }
 
-    void erase(){
+    // Função que insere uma linha da ForwardList
+    // Ordem crescente e após o numero da linha especificado.
+    // Complexidade: O(n)
+    iterator_forwardList erase(const unsigned& numero){
 
+
+        --m_size;
+
+        return iterator_forwardList(nullptr);
     }
 };
 
