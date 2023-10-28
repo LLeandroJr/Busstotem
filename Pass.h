@@ -24,7 +24,7 @@ public:
         endTimeMin=end_time_min;
     }
 
-    const std::string& showfrom() const{
+    const std::string& showFrom() const{
         return from;
     }
 

@@ -54,18 +54,13 @@ private:
     unsigned list_m_size{};
 public:
     iterator_list begin(){
-        iterator_list it(list_m_head->listNext);
-        return it;
-
-    }
-
-    iterator_list before_begin(){
         iterator_list it(list_m_head);
+
         return it;
     }
 
     iterator_list end(){
-        iterator_list it(nullptr);
+        iterator_list it(list_m_head);
         return it;
     }
 
@@ -76,62 +71,81 @@ public:
     // construtor que cria uma lista vazia
     // Construtor: cria lista vazia
     List(){
-        list_m_head=new NodeList(Pass(),nullptr,nullptr);
-        list_m_head->listPrev=list_m_head;
-        list_m_head->listNext=list_m_head;
+        list_m_head=nullptr;
         list_m_size=0;
     }
     // destrutor
     ~List(){
         clear();
-        delete list_m_head;
     }
 
     void printAll() const{
-
-    }
-
-    void printIt() const{
-
-    }
-
-    //-----------------------------------------------------------
-    void printForward() {
-        if (list_m_head == nullptr) {
-            std::cout << "A lista está vazia." << std::endl;
+        if(list_m_head==nullptr){
+            std::cout<<"A lista está vazia.\n";
             return;
         }
 
-        NodeList* current = list_m_head;
-        do {
-            std::cout << "Destino: " << current->listData.showfrom()
-                    << ", Hora de Saida: " 
-                    << current->listData.showStartTimeHour() << ":" << current->listData.showStartTimeMin()
-                    << ", Hora de Chegada: " 
-                    << current->listData.showEndTimeHour() << ":" << current->listData.showEndTimeMin()
-                    << std::endl;
-            current = current->listNext;
-        } while (current != list_m_head);
+        NodeList* temp=list_m_head;
+
+        do{
+            std::cout<<"Destino: "
+                     <<temp->listData.showFrom()
+                     
+            <<"\n Horario de saida: "
+                     <<temp->listData.showStartTimeHour()
+                     <<" : "
+                     <<temp->listData.showStartTimeMin()
+
+            <<"\n Horario de chegada"
+                     <<temp->listData.showEndTimeHour()
+                     <<" : "
+                     <<temp->listData.showEndTimeMin()
+            <<std::endl;
+            temp=temp->listNext;
+        }while(temp!=list_m_head);
     }
 
-    void printBackward() {
-        if (list_m_head == nullptr) {
-            std::cout << "A lista está vazia." << std::endl;
+    void rprintAll(){
+        if(list_m_head==nullptr){
+            std::cout<<"A lista está vazia.\n";
             return;
         }
 
-        NodeList* current = list_m_head->listPrev;
-        do {
-            std::cout << "Destino: " << current->listData.showfrom()
-                    << ", Hora de Saida: " 
-                    << current->listData.showStartTimeHour() << ":" << current->listData.showStartTimeMin()
-                    << ", Hora de Chegada: "
-                    << current->listData.showEndTimeHour() << ":" << current->listData.showEndTimeMin() 
-                    << std::endl;
-            current = current->listPrev;
-        } while (current != list_m_head->listPrev);
+        NodeList* temp=list_m_head->listPrev;
+
+        do{
+            std::cout<<"Destino: "
+                     <<temp->listData.showFrom()
+                     
+            <<"\n Horario de saida: "
+                     <<temp->listData.showStartTimeHour()
+                     <<" : "
+                     <<temp->listData.showStartTimeMin()
+
+            <<"\n Horario de chegada"
+                     <<temp->listData.showEndTimeHour()
+                     <<" : "
+                     <<temp->listData.showEndTimeMin()
+            <<std::endl;
+            temp=temp->listPrev;
+        }while(temp!=list_m_head->listPrev);
     }
-    //-----------------------------------------------------------
+
+    void printIt(const iterator_list& it) const{
+        std::cout<<"Destino: "
+                 <<it.listPtr->listData.showFrom()
+                 
+        <<"\n Horario de saida: "
+                 <<it.listPtr->listData.showStartTimeHour()
+                 <<" : "
+                 <<it.listPtr->listData.showStartTimeMin()
+
+        <<"\n Horario de chegada"
+                 <<it.listPtr->listData.showEndTimeHour()
+                 <<" : "
+                 <<it.listPtr->listData.showEndTimeMin()
+        <<std::endl;
+    }
 
     bool empty() const{
         return list_m_size==0;
@@ -140,24 +154,15 @@ public:
     unsigned size()const{
         return list_m_size;
     }
+
     // função que limpa a List.h
     void clear(){
-        NodeList* temp=list_m_head->listNext;
-        while(temp!=list_m_head){
-            list_m_head->listNext=temp->listNext;
+        while(list_m_head!=nullptr){
+            NodeList* temp=list_m_head;
+            list_m_head=temp->listNext;
             delete temp;
-            temp=list_m_head->listNext;
         }
-        list_m_head->listPrev=list_m_head;
 
-        /*
-        while(list_m_head->listNext!=list_m_head){
-            NodeList* temp=list_m_head->listNext;
-            list_m_head->listNext=temp->listNext;
-            temp->listNext->listPrev=temp->listPrev;
-            delete temp;
-        }
-        */
         list_m_size=0;
     }
 
@@ -216,11 +221,13 @@ public:
     */
     iterator_list insert(const unsigned& inserir_apos){
         NodeList* thisNode=list_m_head;
-        unsigned token_rage{1};
+        unsigned token_rage{};
 
-        while(thisNode->listNext!=nullptr && token_rage<=inserir_apos){
-            thisNode=thisNode->listNext;
-            ++token_rage;
+        if(!empty()){
+            do{
+                ++token_rage;
+                thisNode=thisNode->listNext;
+            }while(thisNode!=list_m_head);
         }
         NodeList* temp=thisNode->listNext;
         thisNode->listNext=new NodeList(Pass(),temp->listNext->listPrev,temp->listNext);
