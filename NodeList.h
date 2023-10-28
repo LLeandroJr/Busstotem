@@ -16,7 +16,7 @@ private:
     NodeList* listNext; //Ponteiro para o próximo nó.
 public:
     // Construtor que atribui ao objeto da classe NodeList.
-    // Node(Pass <listData>,NodeList* <listPrevPtr>,NodeList* <listnextPtr>)
+    // Node(Pass <listData>,NodeList* <listPrevPtr>,NodeList* <listNextPtr>)
     NodeList(Pass listData,NodeList* listPrevPtr,NodeList* listNextPtr){
         this->listData=listData;
         listPrev=listPrevPtr;

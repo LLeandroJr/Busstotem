@@ -34,7 +34,7 @@ int main() {
             while (!sair_cliente) {
                 cout << "Linhas disponíveis:\n";
                 // Chame uma função que liste as linhas disponíveis (a ser implementada)
-                myForwardList.print();
+                myForwardList.printAll();
 
                 cout << "Digite 'M' para voltar ao menu principal, 'S' para sair ou qualquer outra tecla para continuar: ";
                 char voltar_menu;
@@ -56,8 +56,6 @@ int main() {
                 cout << "Digite a senha de administrador para ganhar acesso ao controle de paradas: \n";
                 cin >> senha_digitada_pelo_usuario;
                 cin.ignore();
-                //  outra forma, que limpa o buffer do cin
-                // getline(cin,senha_digitada_pelo_usuario);
 
                 if (senha_digitada_pelo_usuario == senha) {
                     senha_correta = true;
@@ -82,7 +80,7 @@ int main() {
 
                 while (true) {
                     cin >> escolha_do_ADM;
-                    cin.ignore(); // Adicionando cin.ignore()
+                    cin.ignore();
 
                     if (escolha_do_ADM == '1') {
                         do {
@@ -94,21 +92,36 @@ int main() {
                                 cin >> id;
                                 cin.ignore();
                                 
-                                // só para ver mesmo
-                                // saiba que o proprio argumento pedido pela função é diferente
-                                // o usuário digita um int, mas deve ser unsigned
-                                myForwardList.insert(id,name,"inexistente");
+                                myForwardList.insert(id, name);
                             
                             } while (id < 1 || id > 99999);
-
-                            // Adicione os dados à lista (myForwardList.append(name, id))
 
                             cout << "Deseja adicionar outro elemento? (S/N): ";
                             cin >> continueAdding;
                             cin.ignore();
                         } while (continueAdding == 'S' || continueAdding == 's');
 
-                        cout << "Linha adicionada com sucesso (GREAT):\n";
+                        cout << "Linha adicionada com sucesso:\n";
+                    } else if (escolha_do_ADM == '2') {
+                        // Função para eliminar uma linha por ID
+                        unsigned numeroParaRemover;
+                        cout << "Número da Linha para Excluir: ";
+                        cin >> numeroParaRemover;
+                        cin.ignore();
+                        
+                        iterator_forwardList it = myForwardList.erase(numeroParaRemover);
+
+                        if (it != myForwardList.end()) {
+                            cout << "Linha com o número " << numeroParaRemover << " foi excluída com sucesso." << endl;
+                        } else {
+                            cout << "Linha com o número " << numeroParaRemover << " não foi encontrada na lista." << endl;
+                        }
+                        
+                        // Aguardar o usuário pressionar uma tecla antes de retornar ao menu principal
+                        cout << "Pressione qualquer tecla e Enter para voltar ao menu principal: ";
+                        char voltar_menu_principal;
+                        cin >> voltar_menu_principal;
+                        cin.ignore();
                     } else if (escolha_do_ADM == 'M' || escolha_do_ADM == 'm') {
                         cout << "Saindo do modo administrador e voltando ao menu principal...\n";
                         break; // Saia do loop de administrador

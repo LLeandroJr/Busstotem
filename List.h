@@ -87,7 +87,11 @@ public:
         delete list_m_head;
     }
 
-    void print() const{
+    void printAll() const{
+
+    }
+
+    void printIt() const{
 
     }
 
@@ -210,6 +214,21 @@ public:
     //-----------------------------------------------------------
 
     */
+    iterator_list insert(const unsigned& inserir_apos){
+        NodeList* thisNode=list_m_head;
+        unsigned token_rage{1};
+
+        while(thisNode->listNext!=nullptr && token_rage<=inserir_apos){
+            thisNode=thisNode->listNext;
+            ++token_rage;
+        }
+        NodeList* temp=thisNode->listNext;
+        thisNode->listNext=new NodeList(Pass(),temp->listNext->listPrev,temp->listNext);
+        temp->listNext->listPrev=thisNode->listNext;
+
+        ++list_m_size;
+
+    }
 
     void erase(){
 

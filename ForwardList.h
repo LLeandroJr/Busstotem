@@ -162,9 +162,24 @@ public:
     // Ordem crescente e após o numero da linha especificado.
     // Complexidade: O(n)
     iterator_forwardList erase(const unsigned& numero){
-
-
-        --m_size;
+        Node* current = m_head;
+        
+        while (current->next != nullptr) {
+            if (current->next->data.showID() == numero) {
+                Node* temp = current->next;
+                current->next = temp->next;
+                if (temp == m_tail) {
+                    m_tail = current; // Atualize o m_tail se o nó apagado for o último.
+                }
+                if(temp->list!=nullptr){
+                    temp->list->~List(); // Chame o destrutor da List associada ao nó apagado.
+                }
+                delete temp; // Libere a memória do nó apagado.
+                --m_size;
+                return iterator_forwardList(current->next);
+            }
+            current = current->next;
+        }
 
         return iterator_forwardList(nullptr);
     }
