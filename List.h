@@ -166,6 +166,34 @@ public:
         list_m_size=0;
     }
 
+    // função que apaga uma parada especifica da linha de onibus
+
+    void erase(iterator_list& it) {
+        if (empty()) {
+            return; // Não retorna nada pois a lista ja esta vazia
+        }
+        NodeList* nodeToDelete = it.listPtr;
+        NodeList* prevNode = nodeToDelete->listPrev;
+        NodeList* nextNode = nodeToDelete->listNext;
+
+        if (list_m_size == 1) {
+            // Se existir somente um nó na lista, limpe a lista
+            list_m_head = nullptr;
+        } else {
+            prevNode->listNext = nextNode;
+            nextNode->listPrev = prevNode;
+
+            if ( nodeToDelete == list_m_head) {
+                // Se o nó que será apagado é o nó cabeça, atualize a m_head
+                list_m_head = nextNode;
+            }
+        }
+
+        delete nodeToDelete;
+        --list_m_head;
+
+    }
+
     /*
 
     void insert(const std::string& from,const int& startTimeHour,const int& startTimeMin,const int& endTimeHour,const int& endTimeMin){

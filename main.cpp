@@ -122,6 +122,14 @@ int main() {
                         char voltar_menu_principal;
                         cin >> voltar_menu_principal;
                         cin.ignore();
+                    } else if(escolha_do_ADM == '3') {
+                        unsigned numeroLinha;
+                        int numeroParada;
+                        cout << "Digite o numero da linha: ";
+                        cin >> numeroLinha;
+
+                        cout << "Digite o numero do parada que deseja eliminar: ";
+                        cin >> numeroParada;
                     } else if (escolha_do_ADM == 'M' || escolha_do_ADM == 'm') {
                         cout << "Saindo do modo administrador e voltando ao menu principal...\n";
                         break; // Saia do loop de administrador
